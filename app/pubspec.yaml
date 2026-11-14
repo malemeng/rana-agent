@@ -1,5 +1,5 @@
 name: personal_agent
-description: 独立 Personal Agent Flutter 客户端，支持目标、任务、审批、记忆、日程与实时语音。
+description: 独立 Rana Agent Flutter 客户端，支持目标、任务、审批、记忆、日程与实时语音。
 publish_to: "none"
 version: 1.0.0+1
 

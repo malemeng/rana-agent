@@ -7,8 +7,8 @@ import 'app/shell.dart';
 import 'features/auth/application/auth_controller.dart';
 import 'features/auth/presentation/login_page.dart';
 
-class PersonalAgentApp extends ConsumerWidget {
-  const PersonalAgentApp({super.key});
+class RanaAgentApp extends ConsumerWidget {
+  const RanaAgentApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +24,7 @@ class PersonalAgentApp extends ConsumerWidget {
       brightness: Brightness.dark,
     );
     return MaterialApp(
-      title: 'Personal Agent',
+      title: 'Rana Agent',
       debugShowCheckedModeBanner: false,
       locale: const Locale('zh', 'CN'),
       supportedLocales: const <Locale>[Locale('zh', 'CN'), Locale('en')],

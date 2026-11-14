@@ -1,8 +1,8 @@
-name: ${COMPOSE_PROJECT_NAME:-personal-agent}
+name: ${COMPOSE_PROJECT_NAME:-rana-agent}
 
 services:
   server:
-    image: ${SERVER_IMAGE:-personal-agent-server}:${IMAGE_TAG:-0.1.0}
+    image: ${SERVER_IMAGE:-rana-agent-server}:${IMAGE_TAG:-0.1.0}
     build:
       context: .
       dockerfile: deploy/server.Dockerfile
@@ -52,7 +52,7 @@ services:
         max-file: "3"
 
   executor:
-    image: ${EXECUTOR_IMAGE:-personal-agent-executor}:${IMAGE_TAG:-0.1.0}
+    image: ${EXECUTOR_IMAGE:-rana-agent-executor}:${IMAGE_TAG:-0.1.0}
     build:
       context: .
       dockerfile: deploy/executor.Dockerfile
@@ -99,14 +99,14 @@ services:
         max-file: "3"
 
   watchdog:
-    image: ${WATCHDOG_IMAGE:-personal-agent-watchdog}:${IMAGE_TAG:-0.1.0}
+    image: ${WATCHDOG_IMAGE:-rana-agent-watchdog}:${IMAGE_TAG:-0.1.0}
     build:
       context: .
       dockerfile: deploy/watchdog.Dockerfile
     profiles:
       - watchdog
     environment:
-      WATCHDOG_CONTAINER_PREFIX: ${COMPOSE_PROJECT_NAME:-personal-agent}
+      WATCHDOG_CONTAINER_PREFIX: ${COMPOSE_PROJECT_NAME:-rana-agent}
       WATCHDOG_SERVER_URL: http://server:8080/readyz
       WATCHDOG_EXECUTOR_URL: http://executor:8081/healthz
       WATCHDOG_INTERVAL_SECONDS: ${WATCHDOG_INTERVAL_SECONDS:-30}

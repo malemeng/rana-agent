@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:label="Personal Agent"
+        android:label="Rana Agent"
         android:name="${applicationName}"
         android:icon="@drawable/ic_launcher"
         android:usesCleartextTraffic="true">

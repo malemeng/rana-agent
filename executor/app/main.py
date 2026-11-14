@@ -24,7 +24,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings or get_settings()
     install_log_redaction(settings.token, settings.log_level)
     application = FastAPI(
-        title="Personal Agent Executor",
+        title="Rana Agent Executor",
         version=__version__,
         description="按 task_id 隔离的内部工具执行服务",
         lifespan=lifespan,

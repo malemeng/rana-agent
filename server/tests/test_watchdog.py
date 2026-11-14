@@ -20,7 +20,7 @@ def test_watchdog_threshold_cooldown_and_restart_budget() -> None:
         raise ConnectionError("down")
 
     watchdog = Watchdog(
-        [Target("server", "http://server/readyz", "personal-agent-server-1")],
+        [Target("server", "http://server/readyz", "rana-agent-server-1")],
         failure_threshold=3,
         cooldown_seconds=10,
         max_restarts=2,
@@ -32,7 +32,7 @@ def test_watchdog_threshold_cooldown_and_restart_budget() -> None:
     )
     for _ in range(3):
         watchdog.run_once()
-    assert docker.calls == ["personal-agent-server-1"]
+    assert docker.calls == ["rana-agent-server-1"]
     watchdog.run_once()
     assert len(docker.calls) == 1
     now += 11

@@ -1,7 +1,7 @@
 import logging
 import secrets
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from .config import Settings
@@ -44,7 +44,7 @@ async def bootstrap_identity(
             session.add(
                 Agent(
                     user_id=user.id,
-                    name="Dot",
+                    name="Rana",
                     system_prompt=(
                         "你是用户持续在线的个人 Agent。保持项目上下文，主动拆解目标，"
                         "清楚报告进展；外部写操作先生成审批。"
@@ -63,7 +63,10 @@ async def bootstrap_identity(
             return
 
         users = (await session.execute(select(User))).scalars().all()
-        added = False
+        renamed = await session.execute(
+            update(Agent).where(Agent.name == "Dot").values(name="Rana")
+        )
+        added = bool(getattr(renamed, "rowcount", 0))
         for user in users:
             agent_count = await session.scalar(
                 select(func.count(Agent.id)).where(Agent.user_id == user.id)
@@ -72,7 +75,7 @@ async def bootstrap_identity(
                 session.add(
                     Agent(
                         user_id=user.id,
-                        name="Dot",
+                        name="Rana",
                         model=settings.mimo_llm_model,
                         voice=settings.mimo_voice,
                     )

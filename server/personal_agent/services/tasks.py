@@ -72,7 +72,7 @@ class TaskManager:
     def _ensure_thread_pool(self) -> ThreadPoolExecutor:
         if self._thread_pool is None:
             self._thread_pool = ThreadPoolExecutor(
-                max_workers=self.thread_workers, thread_name_prefix="personal-agent"
+                max_workers=self.thread_workers, thread_name_prefix="rana-agent"
             )
         return self._thread_pool
 
@@ -84,7 +84,7 @@ class TaskManager:
         await self.recover()
         self._started = True
         self._dispatcher = asyncio.create_task(
-            self._dispatch_loop(), name="personal-agent-task-dispatcher"
+            self._dispatch_loop(), name="rana-agent-task-dispatcher"
         )
 
     async def stop(self) -> None:
@@ -489,7 +489,7 @@ class TaskManager:
             self._ensure_thread_pool()
             for task in claimed:
                 execution = asyncio.create_task(
-                    self._execute(task.id), name=f"personal-agent-task-{task.id}"
+                    self._execute(task.id), name=f"rana-agent-task-{task.id}"
                 )
                 self._running[task.id] = execution
                 self._running_users[task.id] = task.user_id
@@ -543,7 +543,7 @@ class TaskManager:
                     result_json=dict(task.result_json or {}),
                 )
             heartbeat = asyncio.create_task(
-                self._heartbeat(task_id), name=f"personal-agent-heartbeat-{task_id}"
+                self._heartbeat(task_id), name=f"rana-agent-heartbeat-{task_id}"
             )
             result = await asyncio.wait_for(
                 self.agent.run(

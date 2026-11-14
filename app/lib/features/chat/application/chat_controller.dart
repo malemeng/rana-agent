@@ -39,7 +39,7 @@ class ChatController extends StateNotifier<ChatState> {
             ChatMessage(
               id: createId('welcome'),
               role: 'assistant',
-              content: '你好，我是你的 Personal Agent。请告诉我你想完成什么目标。',
+              content: '你好，我是你的 Rana Agent。请告诉我你想完成什么目标。',
               createdAt: DateTime.now(),
             ),
           ],

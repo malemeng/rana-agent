@@ -23,7 +23,7 @@ void main() {
           tokenStorageProvider.overrideWithValue(InMemoryTokenStorage()),
           authGatewayProvider.overrideWithValue(_FakeAuthGateway()),
         ],
-        child: const PersonalAgentApp(),
+        child: const RanaAgentApp(),
       ),
     );
     await tester.pumpAndSettle();

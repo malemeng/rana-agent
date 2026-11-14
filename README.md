@@ -1,4 +1,4 @@
-# Personal Agent
+# Rana Agent
 
 自托管、持续在线的个人 Agent，面向 NAS 与 Android 使用场景。产品体验对标 Dot：不仅回答问题，也把对话延伸为长期目标、持久任务、定时日程、可检索记忆与需要审批的工具动作。
 
@@ -71,7 +71,7 @@ flutter pub get
 flutter build apk --release
 ```
 
-当前已实测生成 Release APK：`app/build/app/outputs/flutter-apk/app-release.apk`（约 55.1 MB，Android 7.0+）。测试包使用 Android Debug 证书，便于直接安装；正式发布签名配置见 `app/README.md`。
+当前已实测生成 Release APK：`app/build/app/outputs/flutter-apk/app-release.apk`（约 54.8 MB，Android 7.0+）。测试包使用 Android Debug 证书，便于直接安装；正式发布签名配置见 `app/README.md`。
 
 在客户端的 API Base URL 配置中填写 `http(s)://NAS_HOST:8080/api/v1`（必须包含 `/api/v1`）。`AppConfig.defaultBaseUrl` 的 Android 模拟器默认值为 `http://10.0.2.2:8080/api/v1`，连接 NAS 时应改为实际地址。手机与 NAS 需网络互通。经反向代理使用时必须支持 WebSocket Upgrade，并为语音长连接配置足够的读取超时。生产使用 HTTPS/WSS。
 
@@ -116,13 +116,13 @@ docker compose -f docker-compose.yml -f deploy/compose.browser.yml up -d --build
 ```sh
 # POSIX：备份两个数据卷
 ./scripts/backup.sh
-./scripts/restore.sh backups/personal-agent-YYYYMMDDTHHMMSSZ.tar.gz
+./scripts/restore.sh backups/rana-agent-YYYYMMDDTHHMMSSZ.tar.gz
 ```
 
 ```powershell
 # Windows PowerShell
 pwsh -File scripts/backup.ps1
-pwsh -File scripts/restore.ps1 -ArchivePath .\backups\personal-agent-YYYYMMDDTHHMMSSZ.tar.gz
+pwsh -File scripts/restore.ps1 -ArchivePath .\backups\rana-agent-YYYYMMDDTHHMMSSZ.tar.gz
 ```
 
 脚本会停止写入方、归档 server 与 executor 的 `/data` 卷，再恢复服务。根 `.env` 不在压缩包内，应单独作为敏感配置备份。恢复会替换目标卷内容，先保留当前状态的独立备份。

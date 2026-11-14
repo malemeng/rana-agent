@@ -3,7 +3,7 @@ requires = ["setuptools>=75", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "personal-agent"
+name = "rana-agent"
 version = "0.1.0"
 description = "Self-hosted, always-on personal agent with Xiaomi MiMo voice"
 requires-python = ">=3.12,<3.15"

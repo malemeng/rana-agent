@@ -3,7 +3,7 @@ FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    WATCHDOG_CONTAINER_PREFIX=personal-agent
+    WATCHDOG_CONTAINER_PREFIX=rana-agent
 
 WORKDIR /opt/watchdog
 COPY scripts/watchdog.py /opt/watchdog/watchdog.py

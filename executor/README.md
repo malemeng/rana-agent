@@ -1,4 +1,4 @@
-# Personal Agent Executor
+# Rana Agent Executor
 
 基于 FastAPI 的内部工具执行服务，提供按 `task_id` 隔离的工作区、受控子进程、可选 Playwright 浏览器以及产物下载。项目仅包含 Executor，不包含调度器或 MiMo。
 
@@ -206,7 +206,7 @@ playwright install --with-deps chromium
 
 ```json
 {"action":"open","url":"https://example.com","wait_until":"domcontentloaded"}
-{"action":"fill","selector":"input[name=q]","value":"Personal Agent"}
+{"action":"fill","selector":"input[name=q]","value":"Rana Agent"}
 {"action":"click","selector":"button[type=submit]"}
 {"action":"read","selector":"body"}
 {"action":"screenshot","path":"screens/result.png","full_page":true}
@@ -255,11 +255,11 @@ Windows 本地运行时，POSIX 权限位专项测试会跳过，其余 shell �
 基础镜像使用 `python:3.12-slim`，以 UID/GID `10001` 的非 root 用户运行，工作区位于 `/workspace`。
 
 ```bash
-docker build -t personal-agent-executor ./executor
+docker build -t rana-agent-executor ./executor
 docker run --rm -p 8000:8000 \
   -e EXECUTOR_TOKEN='replace-with-internal-token' \
   -v executor-workspace:/workspace \
-  personal-agent-executor
+  rana-agent-executor
 ```
 
 构建包含 Chromium 的镜像：
@@ -267,7 +267,7 @@ docker run --rm -p 8000:8000 \
 ```bash
 docker build \
   --build-arg INSTALL_PLAYWRIGHT=true \
-  -t personal-agent-executor:browser ./executor
+  -t rana-agent-executor:browser ./executor
 ```
 
 容器健康检查访问 `/healthz`。Linux 上 shell 使用独立进程会话，超时时终止进程组。

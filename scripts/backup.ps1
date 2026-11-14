@@ -47,7 +47,7 @@ try {
     $serverVolume = Get-DataVolume -Service "server"
     $executorVolume = Get-DataVolume -Service "executor"
     $timestamp = [DateTime]::UtcNow.ToString("yyyyMMddTHHmmssZ")
-    $archiveName = "personal-agent-$timestamp.tar.gz"
+    $archiveName = "rana-agent-$timestamp.tar.gz"
 
     try {
         # Stop writers so the SQLite database, WAL and artifacts are consistent.

@@ -1,4 +1,4 @@
-"""Interactive and non-interactive NAS deployment for Personal Agent."""
+"""Interactive and non-interactive NAS deployment for Rana Agent."""
 
 from __future__ import annotations
 
@@ -110,7 +110,7 @@ def _credential(
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Personal Agent NAS 一键部署")
+    parser = argparse.ArgumentParser(description="Rana Agent NAS 一键部署")
     parser.add_argument("--project-dir", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--provider", choices=["mimo", "minimax", "hybrid"])
     parser.add_argument("--mimo-key", dest="mimo_key")
@@ -145,7 +145,7 @@ def prepare_values(args: argparse.Namespace, values: dict[str, str]) -> tuple[bo
     values["AGENT_DATA_DIR"] = values.get("AGENT_DATA_DIR", "./data")
     values["SERVER_PORT"] = str(args.port or int(values.get("SERVER_PORT", "8080")))
     values["SERVER_BIND_IP"] = values.get("SERVER_BIND_IP", "0.0.0.0")
-    values["COMPOSE_PROJECT_NAME"] = values.get("COMPOSE_PROJECT_NAME", "personal-agent")
+    values["COMPOSE_PROJECT_NAME"] = values.get("COMPOSE_PROJECT_NAME", "rana-agent")
     if args.minimax_region:
         values["AGENT_MINIMAX_REGION"] = args.minimax_region
 

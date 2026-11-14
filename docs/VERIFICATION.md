@@ -48,9 +48,9 @@ flutter test --no-pub
 
 - 实际 Gradle `assembleRelease`：**BUILD SUCCESSFUL**（346 个任务）。
 - 输出：`app/build/app/outputs/flutter-apk/app-release.apk`。
-- 大小：55,057,301 字节；包名 `com.example.personal_agent`；`minSdk=24`、`targetSdk=36`。
+- 大小：54,844,301 字节；包名 `com.rana.agent`；`minSdk=24`、`targetSdk=36`。
 - `apksigner verify --print-certs` 通过；当前证书为 Android Debug，供侧载测试。
-- SHA-256：`57de9eaa60fe6a862163041530c71257d3c95968c946dc1d7d3b9ecb9d21fdfb`。
+- SHA-256：`bfdb6a4b29ca9f0389ad562f53123bec69589c901643c7a10034179bc8beebb4`。
 
 ## 边界
 

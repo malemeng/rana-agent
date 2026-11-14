@@ -82,7 +82,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            '连接你的 Personal Agent 服务',
+                            '连接你的 Rana Agent 服务',
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),

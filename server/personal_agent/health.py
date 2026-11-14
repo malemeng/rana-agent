@@ -29,4 +29,4 @@ async def ready(request: Request) -> dict[str, str]:
 
 @router.get("/")
 async def root() -> dict[str, str]:
-    return {"name": "Personal Agent", "version": __version__, "docs": "/docs"}
+    return {"name": "Rana Agent", "version": __version__, "docs": "/docs"}

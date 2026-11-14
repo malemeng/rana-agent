@@ -45,7 +45,7 @@ jobs:
           file: deploy/server.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: false
-          tags: personal-agent-server:ci
+          tags: rana-agent-server:ci
       - name: Build executor amd64/arm64
         uses: docker/build-push-action@v6
         with:
@@ -53,7 +53,7 @@ jobs:
           file: deploy/executor.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: false
-          tags: personal-agent-executor:ci
+          tags: rana-agent-executor:ci
       - name: Build watchdog amd64/arm64
         uses: docker/build-push-action@v6
         with:
@@ -61,4 +61,4 @@ jobs:
           file: deploy/watchdog.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: false
-          tags: personal-agent-watchdog:ci
+          tags: rana-agent-watchdog:ci

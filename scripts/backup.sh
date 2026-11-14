@@ -33,7 +33,7 @@ volume_for() {
 SERVER_VOLUME=$(volume_for server)
 EXECUTOR_VOLUME=$(volume_for executor)
 TIMESTAMP=$(date -u +%Y%m%dT%H%M%SZ)
-ARCHIVE_NAME="personal-agent-$TIMESTAMP.tar.gz"
+ARCHIVE_NAME="rana-agent-$TIMESTAMP.tar.gz"
 
 restart_services() {
     "$DOCKER" compose up -d server executor >/dev/null 2>&1 || true

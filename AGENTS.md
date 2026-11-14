@@ -1,6 +1,6 @@
 # Agent Deployment Runbook
 
-本文件面向自动化部署 Agent，目标是让 NAS 上的 Personal Agent 可重复部署、可验证、可恢复。所有命令在项目根目录执行。不要提交或打印 `.env`、API Key、Access Token、Refresh Token。
+本文件面向自动化部署 Agent，目标是让 NAS 上的 Rana Agent 可重复部署、可验证、可恢复。所有命令在项目根目录执行。不要提交或打印 `.env`、API Key、Access Token、Refresh Token。
 
 ## 1. 前置检查
 

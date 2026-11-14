@@ -146,10 +146,10 @@ class Watchdog:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Personal Agent NAS watchdog")
+    parser = argparse.ArgumentParser(description="Rana Agent NAS watchdog")
     parser.add_argument("--once", action="store_true")
     args = parser.parse_args()
-    prefix = os.getenv("WATCHDOG_CONTAINER_PREFIX", "personal-agent")
+    prefix = os.getenv("WATCHDOG_CONTAINER_PREFIX", "rana-agent")
     server_url = os.getenv("WATCHDOG_SERVER_URL", "http://server:8080/readyz")
     executor_url = os.getenv("WATCHDOG_EXECUTOR_URL", "http://executor:8081/healthz")
     targets = [

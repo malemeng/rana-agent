@@ -1,4 +1,4 @@
-# Personal Agent Flutter App
+# Rana Agent Flutter App
 
 独立的 Material 3 中文 Flutter 客户端。工程是原生 Flutter/Android 结构，不依赖 `build_runner`、Freezed、JSON 生成器或其他代码生成步骤。
 
@@ -152,8 +152,8 @@ tool/                  # 无 SDK 静态结构检查
 - `flutter test --no-pub`：**10 项测试全部通过**。
 - `dart format lib test`：已格式化 52 个 Dart 文件。
 - `tool/check_structure.ps1`：**PASS**；52 个 Dart 文件、181 个本地导入、8 个 Android XML、19 个必需文件检查通过。
-- APK 构建：**Release 成功**。输出 `build/app/outputs/flutter-apk/app-release.apk`，约 55.1 MB；包名 `com.example.personal_agent`，`minSdk=24`、`targetSdk=36`，已通过 `apksigner verify`。
-- APK SHA-256：`57de9eaa60fe6a862163041530c71257d3c95968c946dc1d7d3b9ecb9d21fdfb`。当前使用 Android Debug 证书，适合直接侧载测试；正式发布时替换为自有签名。
+- APK 构建：**Release 成功**。输出 `build/app/outputs/flutter-apk/app-release.apk`，约 54.8 MB；包名 `com.rana.agent`，`minSdk=24`、`targetSdk=36`，已通过 `apksigner verify`。
+- APK SHA-256：`bfdb6a4b29ca9f0389ad562f53123bec69589c901643c7a10034179bc8beebb4`。当前使用 Android Debug 证书，适合直接侧载测试；正式发布时替换为自有签名。
 - 真机麦克风、扬声器、实际后端登录及 WSS 联调：未执行，需要运行中的服务端和 Android 设备。
 
 Flutter 3.47+ 将 Material 迁移到独立包；本工程使用 Material 3 兼容层，并在 `analysis_options.yaml` 中针对该兼容策略关闭 `deprecated_member_use` 提示。

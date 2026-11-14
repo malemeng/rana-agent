@@ -61,7 +61,7 @@ class Agent(Base, TimestampMixin):
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
-    name: Mapped[str] = mapped_column(String(100), default="Dot")
+    name: Mapped[str] = mapped_column(String(100), default="Rana")
     system_prompt: Mapped[str] = mapped_column(Text, default="你是一个可靠、持续工作的个人助理。")
     model: Mapped[str | None] = mapped_column(String(120), nullable=True)
     voice: Mapped[str] = mapped_column(String(120), default="mimo_default")

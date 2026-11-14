@@ -131,7 +131,7 @@ class _MessageBubble extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      isUser ? '你' : 'Personal Agent',
+                      isUser ? '你' : 'Rana Agent',
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     const SizedBox(height: 6),

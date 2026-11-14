@@ -75,8 +75,8 @@ docker compose logs --tail=100 server executor
 | `SERVER_BIND_IP` | `0.0.0.0` | 服务监听地址；仅本机访问时设为 `127.0.0.1` |
 | `SERVER_PORT` | `8080` | NAS 对外 HTTP/WebSocket 端口 |
 | `IMAGE_TAG` | `0.1.0` | server/executor 的共同镜像标签 |
-| `SERVER_IMAGE` | `personal-agent-server` | server 镜像仓库名 |
-| `EXECUTOR_IMAGE` | `personal-agent-executor` | executor 镜像仓库名 |
+| `SERVER_IMAGE` | `rana-agent-server` | server 镜像仓库名 |
+| `EXECUTOR_IMAGE` | `rana-agent-executor` | executor 镜像仓库名 |
 | `SERVER_CPU_LIMIT` / `SERVER_MEMORY_LIMIT` | `2.0` / `2g` | server 资源上限 |
 | `EXECUTOR_CPU_LIMIT` / `EXECUTOR_MEMORY_LIMIT` | `2.0` / `2g` | executor 资源上限 |
 | `INSTALL_BROWSER` | `false` | 构建 executor 时是否安装 Playwright/Chromium |
@@ -103,7 +103,7 @@ docker compose \
 先启用 Buildx：
 
 ```sh
-docker buildx create --name personal-agent-builder --driver docker-container --use
+docker buildx create --name rana-agent-builder --driver docker-container --use
 docker buildx inspect --bootstrap
 ```
 
@@ -111,9 +111,9 @@ docker buildx inspect --bootstrap
 
 ```sh
 docker buildx build --platform PLATFORM --load \
-  -f deploy/server.Dockerfile -t personal-agent-server:0.1.0 .
+  -f deploy/server.Dockerfile -t rana-agent-server:0.1.0 .
 docker buildx build --platform PLATFORM --load \
-  -f deploy/executor.Dockerfile -t personal-agent-executor:0.1.0 .
+  -f deploy/executor.Dockerfile -t rana-agent-executor:0.1.0 .
 docker compose up -d
 ```
 
@@ -122,10 +122,10 @@ docker compose up -d
 ```sh
 docker buildx build --platform linux/amd64,linux/arm64 \
   -f deploy/server.Dockerfile \
-  -t ghcr.io/OWNER/personal-agent-server:0.1.0 --push .
+  -t ghcr.io/OWNER/rana-agent-server:0.1.0 --push .
 docker buildx build --platform linux/amd64,linux/arm64 \
   -f deploy/executor.Dockerfile \
-  -t ghcr.io/OWNER/personal-agent-executor:0.1.0 --push .
+  -t ghcr.io/OWNER/rana-agent-executor:0.1.0 --push .
 ```
 
 浏览器变体使用单独标签，避免覆盖 slim 镜像：
@@ -134,14 +134,14 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 docker buildx build --platform linux/amd64,linux/arm64 \
   --build-arg INSTALL_BROWSER=true \
   -f deploy/executor.Dockerfile \
-  -t ghcr.io/OWNER/personal-agent-executor:0.1.0-browser --push .
+  -t ghcr.io/OWNER/rana-agent-executor:0.1.0-browser --push .
 ```
 
 NAS 拉取远程镜像时，在 `.env` 中设置：
 
 ```dotenv
-SERVER_IMAGE=ghcr.io/OWNER/personal-agent-server
-EXECUTOR_IMAGE=ghcr.io/OWNER/personal-agent-executor
+SERVER_IMAGE=ghcr.io/OWNER/rana-agent-server
+EXECUTOR_IMAGE=ghcr.io/OWNER/rana-agent-executor
 IMAGE_TAG=0.1.0
 ```
 
@@ -156,8 +156,8 @@ POSIX：
 ```sh
 chmod +x scripts/backup.sh scripts/restore.sh
 ./scripts/backup.sh
-BACKUP_DIR=/volume1/backups/personal-agent ./scripts/backup.sh
-./scripts/restore.sh backups/personal-agent-YYYYMMDDTHHMMSSZ.tar.gz
+BACKUP_DIR=/volume1/backups/rana-agent ./scripts/backup.sh
+./scripts/restore.sh backups/rana-agent-YYYYMMDDTHHMMSSZ.tar.gz
 ```
 
 Windows PowerShell：
@@ -165,12 +165,12 @@ Windows PowerShell：
 ```powershell
 pwsh -File scripts/backup.ps1
 pwsh -File scripts/backup.ps1 -BackupDirectory D:\PersonalAgentBackups
-pwsh -File scripts/restore.ps1 -ArchivePath .\backups\personal-agent-YYYYMMDDTHHMMSSZ.tar.gz
+pwsh -File scripts/restore.ps1 -ArchivePath .\backups\rana-agent-YYYYMMDDTHHMMSSZ.tar.gz
 ```
 
 说明：
 
-- 备份格式为 `personal-agent-<UTC时间>.tar.gz`，包含 `server/` 与 `executor/` 两个顶层目录。
+- 备份格式为 `rana-agent-<UTC时间>.tar.gz`，包含 `server/` 与 `executor/` 两个顶层目录。
 - 脚本不包含根 `.env`。请把 `.env` 作为单独的敏感配置备份保存，恢复密码、签名密钥与内部令牌时需要它。
 - 默认辅助镜像为 `alpine:3.21`；离线环境可预拉取后用 `BACKUP_IMAGE` 环境变量或 `-BackupImage` 参数替换。
 - 恢复会清空两个目标卷现有内容。先把当前状态备份到另一目录，再执行恢复；脚本会检查压缩包路径穿越与顶层目录。
@@ -179,7 +179,7 @@ pwsh -File scripts/restore.ps1 -ArchivePath .\backups\personal-agent-YYYYMMDDTHH
 可配置每日维护窗口，例如 NAS cron：
 
 ```cron
-15 3 * * * cd /volume1/docker/personal-agent && BACKUP_DIR=/volume1/backups/personal-agent ./scripts/backup.sh >> /volume1/backups/personal-agent/backup.log 2>&1
+15 3 * * * cd /volume1/docker/rana-agent && BACKUP_DIR=/volume1/backups/rana-agent ./scripts/backup.sh >> /volume1/backups/rana-agent/backup.log 2>&1
 ```
 
 ## 8. 升级与回滚
@@ -219,7 +219,7 @@ docker compose --profile watchdog up -d
 docker compose logs -f watchdog
 ```
 
-Watchdog 检查 Server `/readyz` 与 Executor `/healthz`，默认连续 3 次失败后重启容器；冷却 300 秒，30 分钟内最多重启 3 次。通过 `/var/run/docker.sock` 调用 Docker API，不需要云密钥或业务数据卷。容器名由 `COMPOSE_PROJECT_NAME` 固定为 `personal-agent-server-1` / `personal-agent-executor-1`。一键部署器默认启用，`--no-watchdog` 可关闭。
+Watchdog 检查 Server `/readyz` 与 Executor `/healthz`，默认连续 3 次失败后重启容器；冷却 300 秒，30 分钟内最多重启 3 次。通过 `/var/run/docker.sock` 调用 Docker API，不需要云密钥或业务数据卷。容器名由 `COMPOSE_PROJECT_NAME` 固定为 `rana-agent-server-1` / `rana-agent-executor-1`。一键部署器默认启用，`--no-watchdog` 可关闭。
 
 ## 11. 排查
 

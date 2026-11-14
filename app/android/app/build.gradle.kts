@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.personal_agent"
+    namespace = "com.rana.agent"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.personal_agent"
+        applicationId = "com.rana.agent"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

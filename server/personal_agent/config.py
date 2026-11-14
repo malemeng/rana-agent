@@ -11,7 +11,7 @@ class Settings(BaseSettings):
         env_prefix="AGENT_", env_file=".env", extra="ignore", case_sensitive=False
     )
 
-    app_name: str = "Personal Agent"
+    app_name: str = "Rana Agent"
     environment: str = "development"
     data_dir: Path = Path("./data")
     database_url: str | None = None

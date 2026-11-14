@@ -3,9 +3,9 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "personal-agent-executor"
+name = "rana-agent-executor"
 version = "0.1.0"
-description = "Personal Agent internal FastAPI tool executor"
+description = "Rana Agent internal FastAPI tool executor"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -20,7 +20,7 @@ browser = ["playwright>=1.45.0,<2.0.0"]
 test = ["pytest>=8.3.0,<10.0.0"]
 
 [project.scripts]
-personal-agent-executor = "app.__main__:main"
+rana-agent-executor = "app.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

@@ -14,7 +14,7 @@ $required = @(
     'android/build.gradle.kts',
     'android/app/build.gradle.kts',
     'android/app/src/main/AndroidManifest.xml',
-    'android/app/src/main/kotlin/com/example/personal_agent/MainActivity.kt',
+    'android/app/src/main/kotlin/com/rana/agent/MainActivity.kt',
     'android/gradlew',
     'android/gradlew.bat',
     'android/gradle/wrapper/gradle-wrapper.jar',

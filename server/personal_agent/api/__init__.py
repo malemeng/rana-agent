@@ -1,4 +1,4 @@
-"""HTTP and WebSocket route registration for the Personal Agent API."""
+"""HTTP and WebSocket route registration for the Rana Agent API."""
 
 from fastapi import FastAPI
 

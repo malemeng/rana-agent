@@ -49,7 +49,7 @@ def test_noninteractive_hybrid_config_without_docker(tmp_path: Path) -> None:
     assert values["AGENT_MINIMAX_API_KEY"] == "mini-test-key"
     assert len(values["AGENT_SECRET_KEY"]) > 32
     assert len(values["AGENT_EXECUTOR_TOKEN"]) > 32
-    assert values["COMPOSE_PROJECT_NAME"] == "personal-agent"
+    assert values["COMPOSE_PROJECT_NAME"] == "rana-agent"
     assert "mini-test-key" not in result.stdout + result.stderr
     assert "mimo-test-key" not in result.stdout + result.stderr
 

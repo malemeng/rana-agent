@@ -69,7 +69,7 @@ class TaskScheduler:
         if self._worker is not None and not self._worker.done():
             return
         self._stopping = False
-        self._worker = asyncio.create_task(self._run(), name="personal-agent-scheduler")
+        self._worker = asyncio.create_task(self._run(), name="rana-agent-scheduler")
 
     async def stop(self) -> None:
         self._stopping = True

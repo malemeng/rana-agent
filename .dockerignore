@@ -1,0 +1,36 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+.venv
+.tools
+venv
+__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.ruff_cache
+.mypy_cache
+
+# Runtime state and local backups
+data
+backups
+*.db
+*.sqlite3
+
+# Tests and local tooling are not needed in runtime images
+server/tests
+executor/tests
+.vscode
+.idea
+
+# Mobile/desktop build outputs
+app/.dart_tool
+app/build
+app/android/.gradle
+app/ios/Pods
+
+# OS files
+.DS_Store
+Thumbs.db

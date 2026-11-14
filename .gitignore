@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+.tools/
+*.egg-info/
+
+# Runtime data and secrets
+data/
+.env
+*.db
+*.sqlite3
+
+# Flutter/Dart
+app/.dart_tool/
+app/build/
+app/.flutter-plugins*
+app/.packages
+app/ios/Pods/
+app/android/.gradle/
+app/android/local.properties
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

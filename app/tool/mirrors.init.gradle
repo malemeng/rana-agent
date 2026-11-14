@@ -1,0 +1,43 @@
+// Optional China-network mirror init script. Official repositories remain as fallback.
+settingsEvaluated { settings ->
+    settings.pluginManagement.repositories {
+        clear()
+        maven { url = uri('https://mirrors.huaweicloud.com/repository/maven/') }
+        maven { url = uri('https://maven.aliyun.com/repository/gradle-plugin') }
+        maven { url = uri('https://maven.aliyun.com/repository/google') }
+        maven { url = uri('https://maven.aliyun.com/repository/central') }
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+    settings.dependencyResolutionManagement.repositories {
+        clear()
+        maven { url = uri('https://mirrors.huaweicloud.com/repository/maven/') }
+        maven { url = uri('https://maven.aliyun.com/repository/google') }
+        maven { url = uri('https://maven.aliyun.com/repository/central') }
+        maven { url = uri('https://maven.aliyun.com/repository/gradle-plugin') }
+        google()
+        mavenCentral()
+    }
+}
+
+// Third-party plugins may declare their own buildscript repositories.
+beforeProject { project ->
+    project.buildscript.repositories {
+        maven { url = uri('https://mirrors.huaweicloud.com/repository/maven/') }
+        maven { url = uri('https://maven.aliyun.com/repository/google') }
+        maven { url = uri('https://maven.aliyun.com/repository/central') }
+        maven { url = uri('https://maven.aliyun.com/repository/gradle-plugin') }
+        google()
+        mavenCentral()
+    }
+}
+
+// Some older audio plugins still pin API 33 while their AndroidX dependencies
+// require 34+. Use the already-installed API 36 consistently across modules.
+afterProject { project ->
+    def android = project.extensions.findByName('android')
+    if (android != null) {
+        android.compileSdk = 36
+    }
+}

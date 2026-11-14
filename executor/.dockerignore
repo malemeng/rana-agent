@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+workspace/
+tests/
+README.md
+pyproject.toml
+requirements-dev.txt

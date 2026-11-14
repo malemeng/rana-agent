@@ -1,0 +1,13 @@
+# Optional Chromium runtime for browser tasks. Merge after docker-compose.yml.
+services:
+  executor:
+    build:
+      args:
+        INSTALL_BROWSER: "true"
+    environment:
+      INSTALL_BROWSER: "true"
+      BROWSER_HEADLESS: "true"
+    deploy:
+      resources:
+        limits:
+          memory: ${EXECUTOR_BROWSER_MEMORY_LIMIT:-4g}
